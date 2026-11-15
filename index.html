@@ -498,7 +498,7 @@ img{display:block;max-width:100%;height:auto}
     st.classList.toggle('on', state === 'live');
     if (state === 'live'){
       tx.textContent = '지금 방송 중이에요' + (info.viewers ? ` · ${Number(info.viewers).toLocaleString('ko-KR')}명 시청 중` : '');
-      if (info.title){ lt.textContent = info.title; lt.hidden = false; }
+      lt.hidden = true;
       $('hero-watch-text').textContent = '지금 방송 보기'; $('play-text').textContent = '지금 방송 보기';
     } else if (state === 'off'){
       tx.textContent = '지금은 방송 중이 아니에요'; lt.textContent = on ? '방송 시간대라 곧 켤 수도 있어요.' : s; lt.hidden = false;
