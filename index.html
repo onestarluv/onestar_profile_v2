@@ -107,7 +107,7 @@ img{display:block;max-width:100%;height:auto}
 .spark{position:absolute;z-index:2;width:34px;height:34px;color:var(--butter);pointer-events:none;animation:twinkle 3.2s ease-in-out infinite}
 .spark path{fill:currentColor;stroke:var(--berry);stroke-width:1.6;stroke-linejoin:round}
 .spark.s1{top:-15px;right:-15px}
-.spark.s2{top:22%;left:-12px;width:22px;height:22px;color:var(--gingham);animation-delay:-1.6s}
+.spark.s2{top:26%;left:-16px;width:28px;height:28px;color:var(--gingham);animation-delay:-1.6s}
 @keyframes twinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.82) rotate(12deg)}}
 
 /* 블록 공통 */
@@ -123,7 +123,6 @@ img{display:block;max-width:100%;height:auto}
 .sched{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:end}
 .when{font-size:clamp(48px,6.2vw,92px);line-height:1.02}
 .when em{font-style:normal;color:var(--butter)}
-.memo{display:inline-block;margin-top:28px;padding:12px 18px;border-radius:var(--r-chip);background:var(--milk);color:var(--berry);font-weight:800;transform:rotate(-2deg)}
 .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
 .days li{display:flex;flex-direction:column;align-items:center;gap:4px;padding:18px 0 14px;border-radius:18px;border:2px solid rgba(255,247,244,.22);font-family:var(--display);font-size:24px;line-height:1}
 .days li small{font-family:var(--body);font-size:13px;font-weight:700;color:var(--muted-on-dark)}
@@ -143,9 +142,9 @@ img{display:block;max-width:100%;height:auto}
 .watch{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:stretch}
 .player.tile{aspect-ratio:16/9;isolation:isolate}
 .player .clip{position:absolute;inset:0;border-radius:calc(var(--r-tile) - 2px);overflow:hidden;background:#140b10}
-.poster{position:absolute;inset:0;display:grid;place-items:center;width:100%;border:0;padding:0;background:#140b10;color:var(--milk)}
-.poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 40%}
-.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(61,26,42,.35),rgba(61,26,42,0) 60%)}
+/* 플레이어 대기 화면: 가로로 긴 배너를 늘리지 않고 원래 비율대로 가운데 위쪽에 두고, 위아래를 배너 끝 색으로 녹인다 */
+.poster{position:absolute;inset:0;display:grid;place-items:end center;width:100%;border:0;padding:0 0 8%;background:#ffefef;color:var(--milk)}
+.poster img{position:absolute;left:50%;top:40%;width:auto;height:64%;max-width:none;transform:translate(-50%,-50%);-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
 .poster .play{z-index:1}
 .poster .play{position:relative;display:inline-flex;align-items:center;gap:12px;padding:18px 30px;border-radius:999px;border:2px solid var(--berry);background:var(--butter);color:var(--berry);font-weight:800;font-size:18px;box-shadow:5px 5px 0 var(--berry);transition:transform .18s var(--ease),box-shadow .18s}
 .poster:hover .play{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--berry)}
@@ -167,8 +166,8 @@ img{display:block;max-width:100%;height:auto}
 .msg.sys{color:var(--muted);font-size:14px}
 .msg a{color:var(--cherry);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .msg.new{animation:pop .22s var(--ease)}
-.cmds{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px 0;border-top:2px solid var(--berry)}
-.cmds button{min-height:36px;padding:0 12px;border-radius:var(--r-chip);border:2px solid var(--berry);background:var(--milk);font-size:14px;font-weight:700;transition:background-color .15s}
+.cmds{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;padding:12px 14px 0;border-top:2px solid var(--berry)}
+.cmds button{min-height:36px;padding:0 8px;white-space:nowrap;border-radius:var(--r-chip);border:2px solid var(--berry);background:var(--milk);font-size:14px;font-weight:700;transition:background-color .15s}
 .cmds button:hover{background:var(--butter)}
 .say{display:flex;gap:8px;padding:12px 14px 14px}
 .say input{flex:1;min-width:0;min-height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--berry);background:#fff}
@@ -184,11 +183,8 @@ img{display:block;max-width:100%;height:auto}
 .front{background:#1b1430}
 .front img{width:100%;height:100%;object-fit:cover;object-position:46% 30%}
 .front figcaption{position:absolute;left:16px;right:16px;bottom:16px;display:flex;gap:12px;justify-content:space-between;align-items:center;padding:10px 16px;border-radius:999px;background:var(--milk);font-weight:800;font-size:15px}
-.back{transform:rotateY(180deg);background:var(--check);display:grid;place-items:center}
-.back div{width:78%;padding:28px 24px;border-radius:24px;border:2px solid var(--berry);background:var(--milk);text-align:center}
-.back b{display:block;font-family:var(--display);font-size:64px;line-height:1}
-.back p{margin-top:12px;font-weight:700}
-.back small{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
+.back{transform:rotateY(180deg);background:#5a4a5e}
+.back img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .card-hint{margin-top:30px;font-size:14px;font-weight:600;color:var(--muted)}
 .card-wrap{position:relative;width:min(400px,100%)}
 .card{width:100%}
@@ -249,9 +245,9 @@ img{display:block;max-width:100%;height:auto}
 .trailer-video video{display:block;width:100%;height:auto;max-height:80vh;background:#000}
 
 /* 푸터 */
-.foot{background:var(--berry);color:var(--milk);padding:var(--gap) 0 48px}
-.strip{height:56px;border-radius:999px;border:2px solid var(--milk);background:var(--check)}
-.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:40px}
+.foot{background:var(--berry);color:var(--milk);padding:0 0 48px}
+.foot::before{content:"";display:block;height:28px;background:var(--check);border-bottom:2px solid var(--berry)}
+.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;padding-top:clamp(48px,6vw,80px)}
 .foot-row .display{font-size:clamp(40px,6vw,72px)}
 .foot-meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px;font-weight:600;color:var(--muted-on-dark)}
 .foot-meta a:hover{color:var(--milk)}
@@ -262,6 +258,63 @@ img{display:block;max-width:100%;height:auto}
 @keyframes rise{from{opacity:0;transform:translateY(.35em)}to{opacity:1;transform:none}}
 @keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes ping{70%{box-shadow:0 0 0 8px rgba(229,36,59,0)}100%{box-shadow:0 0 0 0 rgba(229,36,59,0)}}
+
+/* ───────── 움직임 ───────── */
+/* 스크롤 등장: JS가 .rv를 붙이고, 화면에 들어오면 .in. 같은 묶음 안에서는 --i 순서대로 조금씩 늦게 */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+.rv.in{opacity:1;transform:none}
+.rv.pop{transform:translateY(18px) scale(.94)}
+.rv.pop.in{transform:none}
+.rv.from-l{transform:translateX(-36px)}
+.rv.from-r{transform:translateX(36px)}
+.rv.from-l.in,.rv.from-r.in{transform:none}
+
+/* 히어로: 소개·버튼은 이름 뒤에 차례로, 사진은 살짝 기울어 들어와 자리 잡고 천천히 둥실 */
+.hero .status,.hero .live-title{animation:rise .6s var(--ease) both}
+.hero .lead{animation:rise .7s var(--ease) .28s both}
+.hero .cta{animation:rise .7s var(--ease) .38s both}
+.portrait{animation:settle 1s var(--ease) .15s both}
+.portrait .tile{animation:float 6s ease-in-out 1.2s infinite}
+@keyframes settle{from{opacity:0;transform:translateY(40px) rotate(4deg) scale(.96)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* 방송 시간: 오늘 칸은 은은하게 숨 쉬고, 방송 시간대 막대는 왼쪽에서 차오르며, 지금 점은 반짝 */
+.days li.today:not(.off){animation:today 2.6s ease-in-out infinite}
+@keyframes today{0%,100%{box-shadow:0 0 0 0 rgba(255,212,92,0)}50%{box-shadow:0 0 0 6px rgba(255,212,92,.28)}}
+.bar .win{transform-origin:left center;transition:transform 1s var(--ease) .3s}
+.bar.rv .win{transform:scaleX(0)}
+.bar.rv.in .win{transform:none}
+.bar .now{animation:nowpulse 2s ease-in-out infinite}
+@keyframes nowpulse{0%,100%{box-shadow:0 0 0 2px var(--butter)}50%{box-shadow:0 0 0 7px rgba(255,212,92,.35)}}
+
+/* 플레이어 버튼: 살짝 숨 쉬며 눌러 보라고 */
+.poster .play{animation:breathe 2.8s ease-in-out infinite}
+.poster:hover .play{animation:none}
+@keyframes breathe{0%,100%{transform:none}50%{transform:translateY(-3px)}}
+.cmds button:active{transform:scale(.95)}
+
+/* 프로필·취향 칩: 올리면 통 */
+.taste .yes li{transition:transform .18s var(--ease),background-color .18s}
+.taste .yes li:hover{transform:translateY(-3px) rotate(-2deg);background:var(--butter)}
+.card-wrap:hover::before{transform:translate(18px,18px);transition:transform .3s var(--ease)}
+
+/* 발자취: 연도 글자는 튀어 오르듯, 베스트 카드는 빛이 한 번 쓱 지나감 */
+.best{position:relative;overflow:hidden}
+.best::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:skewX(-18deg);pointer-events:none}
+.best.in::after{animation:sheen 1.4s var(--ease) .5s 1 both}
+.best:hover::after{animation:sheen 1s var(--ease) 1 both}
+@keyframes sheen{from{left:-60%}to{left:130%}}
+.best .medal{transition:transform .3s var(--ease)}
+.best:hover .medal{transform:rotate(-12deg) scale(1.08)}
+
+/* 링크: 아이콘이 까딱, 화살표가 대각선으로 쏙 */
+.links .ic{transition:transform .2s var(--ease),background-color .2s}
+.links a:hover .ic{transform:rotate(-8deg) scale(1.06);background:var(--milk)}
+.links a:hover .go{transform:translate(3px,-3px)}
+
+/* 푸터 깅엄 띠: 천천히 흘러감 */
+.foot::before{animation:flow 18s linear infinite}
+@keyframes flow{to{background-position:280px 0}}
 
 /* 반응형 */
 @media (max-width:1024px){
@@ -340,7 +393,7 @@ img{display:block;max-width:100%;height:auto}
       <p class="status" id="status" role="status"><span class="dot" aria-hidden="true"></span><span id="status-text">방송 시간표 확인 중</span></p>
       <p class="live-title" id="live-title" hidden></p>
       <h1 id="name" class="display name" aria-label="슬한별"><span aria-hidden="true">슬</span><span aria-hidden="true">한</span><span aria-hidden="true">별</span></h1>
-      <p class="lead">노래와 소통, 종겜과 타로를 하는 <b>SOOP 스트리머</b>예요. 매일 저녁 6시~10시 사이에 만날 수 있어요.</p>
+      <p class="lead">노래와 소통, 종겜과 타로를 하는 <b>SOOP 스트리머</b>예요.<br>매일 저녁 6시~10시 사이에 만날 수 있어요.</p>
       <div class="cta">
         <a class="btn btn-live" href="#watch" id="hero-watch"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span id="hero-watch-text">방송 보러 가기</span></a>
         <a class="btn btn-line" href="https://onestage.kr/@seul/musicbook" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg>노래책<span class="sr-only">(새 탭)</span></a>
@@ -364,7 +417,6 @@ img{display:block;max-width:100%;height:auto}
       <div class="sched">
         <div>
           <p class="display when">매일 저녁<br><em>6시~10시</em><br>사이</p>
-          <p class="memo">8시에는 오려고 하는사람</p>
         </div>
         <div>
           <ol class="days" id="days" aria-label="요일별 방송">
@@ -382,7 +434,7 @@ img{display:block;max-width:100%;height:auto}
 
   <section id="watch" class="block block-blush" aria-labelledby="watch-h">
     <div class="wrap">
-      <div class="head"><h2 id="watch-h" class="display h2">보러 가기</h2><p>플레이어를 누르면 SOOP 방송이 여기서 열려요. 방송이 꺼져 있으면 SOOP의 오프라인 화면이 보여요.</p></div>
+      <div class="head"><h2 id="watch-h" class="display h2">보러 가기</h2><p>플레이어를 누르면 SOOP 방송이 여기서 열려요.<br>방송이 꺼져 있으면 SOOP의 오프라인 화면이 보여요.</p></div>
       <div class="watch">
         <div>
           <div class="player tile">
@@ -414,7 +466,7 @@ img{display:block;max-width:100%;height:auto}
           <button class="card" type="button" id="card" aria-pressed="false" aria-label="포토카드 뒤집기">
             <span class="inner">
               <figure class="face front"><img src="assets/blossom.webp" alt="밤 벚꽃 앞에서 웃는 긴 분홍머리의 슬한별" width="676" height="676"><figcaption><span>슬한별</span><span class="num">2025.03.01</span></figcaption></figure>
-              <span class="face back" aria-hidden="true"><div><b>Ξ★</b><p>별빛 / 내꺼</p><small>슬한별 팬 애칭과 팬닉</small></div></span>
+              <figure class="face back" aria-hidden="true"><img src="assets/card_back.webp" alt="검은 고양이 귀와 분홍 리본, 빨간 눈의 슬한별" width="877" height="1095" loading="lazy"></figure>
             </span>
           </button>
           <p class="card-hint">포토카드를 누르면 뒷면이 보여요.</p>
@@ -498,7 +550,6 @@ img{display:block;max-width:100%;height:auto}
 
 <footer class="foot">
   <div class="wrap">
-    <div class="strip" aria-hidden="true"></div>
     <div class="foot-row">
       <p class="display">오늘 밤도 만나요</p>
       <div class="foot-meta"><a href="https://www.sooplive.com/station/seuls2" target="_blank" rel="noopener noreferrer">sooplive.com/station/seuls2<span class="sr-only">(새 탭)</span></a><a href="#top">맨 위로</a></div>
@@ -589,7 +640,7 @@ img{display:block;max-width:100%;height:auto}
   /* 명령어 채팅 */
   const L = (u,x) => `<a href="${u}" target="_blank" rel="noopener noreferrer">${x}</a>`;
   const C = {
-    '!방송시간':'매일 저녁 6시~10시 사이에 방송해요. 8시에는 오려고 하는사람. 금요일은 휴방이에요.',
+    '!방송시간':'매일 저녁 6시~10시 사이에 방송해요. 금요일은 휴방이에요.',
     '!생일':`11월 23일이에요. (${ddText})`,
     '!첫방':'2025년 3월 1일에 첫 방송을 했어요.',
     '!mbti':'INFP / ISFP',
@@ -638,6 +689,24 @@ img{display:block;max-width:100%;height:auto}
     card.querySelector('.back').setAttribute('aria-hidden', !v);
     card.querySelector('.front').setAttribute('aria-hidden', v);
   });
+
+  /* 스크롤 등장: 화면에 들어오는 순서대로 떠오르게. 움직임 줄이기 설정이면 아무것도 안 함 */
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+    const groups = [
+      ['main > section:not(.hero) .head', ''], ['.sched .when', 'from-l'], ['.days li', 'pop'], ['.bar', ''], ['#state-line', ''],
+      ['.player', ''], ['.chat', 'from-r'], ['.card-wrap', 'from-l'], ['.facts > div', ''], ['.taste > div', 'pop'],
+      ['.year h3', 'pop'], ['.events li:not(.best-li)', ''], ['.best', 'pop'], ['.links li', ''], ['#trailer .tile', 'pop'], ['.foot-row', '']
+    ];
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    groups.forEach(([sel, kind]) => document.querySelectorAll(sel).forEach(el => {
+      const i = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
+      el.style.setProperty('--i', Math.min(i, 8));
+      el.classList.add('rv'); if (kind) el.classList.add(kind);
+      io.observe(el);
+    }));
+  }
 })();
 </script>
 </body>
