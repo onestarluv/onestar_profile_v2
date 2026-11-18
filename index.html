@@ -93,11 +93,22 @@ img{display:block;max-width:100%;height:auto}
 .portrait .tile{aspect-ratio:4/5;overflow:visible;isolation:isolate}
 .portrait .tile .clip{position:absolute;inset:0;border-radius:calc(var(--r-tile) - 2px);overflow:hidden;background:#0d0c10}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
-.nick{position:absolute;left:-28px;bottom:48px;z-index:2;display:grid;place-items:center;width:112px;height:112px;border-radius:50%;border:2px solid var(--berry);background:var(--butter);font-family:var(--display);font-size:30px;line-height:1;transform:rotate(-10deg);transition:transform .2s var(--ease)}
-.nick small{display:block;margin-top:4px;font-family:var(--body);font-size:12px;font-weight:800;letter-spacing:0}
-.nick:hover{transform:rotate(-4deg) scale(1.05)}
-.nick:active{transform:rotate(-4deg) scale(.97)}
-.tag{position:absolute;right:-14px;top:36px;z-index:2;padding:10px 18px;border-radius:999px;border:2px solid var(--berry);background:var(--milk);font-weight:800;font-size:15px;transform:rotate(6deg)}
+/* 사진 아래 이름표: 팬 애칭 + 팬닉 복사 (사진 위에 스티커를 붙이지 않고 어둡게 깔리는 띠로) */
+.plate{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:72px 20px 20px;background:linear-gradient(to top,rgba(13,12,16,.94) 0%,rgba(13,12,16,.72) 45%,rgba(13,12,16,0) 100%);color:var(--milk)}
+.plate .fan{display:grid;gap:4px;min-width:0}
+.plate .fan small{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted-on-dark)}
+.plate .fan b{font-family:var(--display);font-weight:400;font-size:clamp(20px,2vw,24px);line-height:1.1;white-space:nowrap}
+.plate .fan b em{font-style:normal;color:var(--gingham)}
+.nick{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;border:2px solid var(--berry);background:var(--butter);color:var(--berry);font-weight:800;font-size:14px;transition:transform .15s var(--ease)}
+.nick span{display:grid;place-items:center;min-width:34px;height:26px;padding:0 6px;border-radius:999px;background:var(--berry);color:var(--butter);font-family:var(--display);font-size:15px;line-height:1}
+.nick:hover{transform:translateY(-2px)}
+.nick:active{transform:translateY(1px)}
+/* 액자 모서리의 작은 별 두 개 */
+.spark{position:absolute;z-index:2;width:34px;height:34px;color:var(--butter);pointer-events:none;animation:twinkle 3.2s ease-in-out infinite}
+.spark path{fill:currentColor;stroke:var(--berry);stroke-width:1.6;stroke-linejoin:round}
+.spark.s1{top:-15px;right:-15px}
+.spark.s2{top:22%;left:-12px;width:22px;height:22px;color:var(--gingham);animation-delay:-1.6s}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.82) rotate(12deg)}}
 
 /* 블록 공통 */
 .block{padding:var(--gap) 0}
@@ -276,8 +287,9 @@ img{display:block;max-width:100%;height:auto}
   .name{font-size:clamp(88px,29vw,128px)}
   .cta .btn{flex:1 1 auto;white-space:nowrap;padding:0 20px}
   .portrait{width:calc(100% - 20px)}
-  .nick{left:-8px;width:96px;height:96px;font-size:26px}
-  .tag{right:-4px}
+  .plate{padding:64px 14px 14px}
+  .nick{padding:0 12px 0 10px;font-size:13px}
+  .spark.s1{right:-10px}
   .days{gap:4px}
   .days li{padding:14px 0 10px;font-size:19px;border-radius:12px}
   .days li small{font-size:12px}
@@ -335,9 +347,14 @@ img{display:block;max-width:100%;height:auto}
       </div>
     </div>
     <figure class="portrait">
-      <div class="tile"><div class="clip"><img src="assets/hero.webp" alt="분홍 단발머리에 고양이 귀, 노란 후드를 입은 슬한별" width="576" height="576" fetchpriority="high"></div></div>
-      <span class="tag" aria-hidden="true">별빛 / 내꺼 ♡</span>
-      <button class="nick" type="button" id="nick" aria-label="팬닉 Ξ★ 복사하기">Ξ★<small>팬닉 복사</small></button>
+      <div class="tile"><div class="clip"><img src="assets/hero.webp" alt="분홍 단발머리에 고양이 귀, 노란 후드를 입은 슬한별" width="576" height="576" fetchpriority="high">
+        <div class="plate">
+          <p class="fan"><small>팬 애칭</small><b>별빛 · 내꺼 <em>♡</em></b></p>
+          <button class="nick" type="button" id="nick" aria-label="팬닉 Ξ★ 복사하기"><span aria-hidden="true">Ξ★</span>팬닉 복사</button>
+        </div>
+      </div></div>
+      <svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.6 5.4 3.1 7.9 8.5 8.5-5.4.6-7.9 3.1-8.5 8.5-.6-5.4-3.1-7.9-8.5-8.5 5.4-.6 7.9-3.1 8.5-8.5Z"/></svg>
+      <svg class="spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.6 5.4 3.1 7.9 8.5 8.5-5.4.6-7.9 3.1-8.5 8.5-.6-5.4-3.1-7.9-8.5-8.5 5.4-.6 7.9-3.1 8.5-8.5Z"/></svg>
     </figure>
   </section>
 
