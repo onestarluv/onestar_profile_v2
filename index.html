@@ -159,7 +159,6 @@ img{display:block;max-width:100%;height:auto}
 .bar .win{position:absolute;top:0;bottom:0;left:75%;width:16.667%;border-radius:999px;background:var(--gingham)}
 .bar .now{position:absolute;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--butter);border:3px solid var(--berry);box-shadow:0 0 0 2px var(--butter)}
 .ticks{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;font-weight:700;color:var(--muted-on-dark)}
-.state-line{margin-top:20px;font-size:19px;font-weight:700}
 
 /* 보러 가기 */
 .watch{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:stretch}
@@ -579,7 +578,7 @@ html.lock .hero .status,html.lock .hero .live-title,html.lock .hero .lead,html.l
 
   <section id="schedule" class="block block-berry" aria-labelledby="sched-h">
     <div class="wrap">
-      <div class="head"><h2 id="sched-h" class="display h2">방송 시간</h2><p>금요일만 쉬고, 매일 저녁에 켜요.</p></div>
+      <div class="head"><h2 id="sched-h" class="display h2">방송 시간</h2></div>
       <div class="sched">
         <div>
           <p class="display when">매일 저녁<br><em>6시~10시</em><br>사이</p>
@@ -592,7 +591,6 @@ html.lock .hero .status,html.lock .hero .live-title,html.lock .hero .lead,html.l
             <div class="bar" role="img" aria-label="하루 24시간 중 저녁 6시부터 10시까지가 방송 시간대"><span class="win"></span><span class="now" id="now" hidden></span></div>
             <div class="ticks num" aria-hidden="true"><span>0시</span><span>6시</span><span>12시</span><span>18시</span><span>24시</span></div>
           </div>
-          <p class="state-line" id="state-line"></p>
         </div>
       </div>
     </div>
@@ -758,7 +756,6 @@ html.lock .hero .status,html.lock .hero .live-title,html.lock .hero .lead,html.l
   else if (day === 5) s = '오늘은 금요일, 쉬는 날이에요';
   else if (h < 18) s = '오늘 저녁 6~10시 사이에 켜요';
   else s = day === 4 ? '내일은 휴방, 토요일 저녁에 만나요' : '내일 저녁 6~10시 사이에 켜요';
-  $('state-line').textContent = s;
 
   /* 실제 방송 여부: SOOP 공개 방송국 정보를 확인하고, 실패하면 시간표로 안내해요.
      브라우저에서 바로 막히면(CORS) LIVE_PROXY에 프록시 주소를 넣으세요. 예: 'https://seul-live.이름.workers.dev' */
@@ -772,7 +769,7 @@ html.lock .hero .status,html.lock .hero .live-title,html.lock .hero .lead,html.l
       lt.hidden = true;
       $('hero-watch-text').textContent = '지금 방송 보기'; $('play-text').textContent = '지금 방송 보기';
     } else if (state === 'off'){
-      tx.textContent = '지금은 방송 중이 아니에요'; lt.textContent = on ? '방송 시간대라 곧 켤 수도 있어요.' : s; lt.hidden = false;
+      tx.textContent = '지금은 방송 중이 아니에요'; lt.hidden = true;  // 상태 아래 안내 줄은 표시하지 않음
       $('hero-watch-text').textContent = '방송 보러 가기'; $('play-text').textContent = '실시간 방송 불러오기';
     } else {
       tx.textContent = s; lt.hidden = true;
@@ -1050,7 +1047,7 @@ html.lock .hero .status,html.lock .hero .live-title,html.lock .hero .lead,html.l
   /* 스크롤 등장: 화면에 들어오는 순서대로 떠오르게. 움직임 줄이기 설정이면 아무것도 안 함 */
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
     const groups = [
-      ['main > section:not(.hero) .head', ''], ['.sched .when', 'from-l'], ['.days li', 'pop'], ['.bar', ''], ['#state-line', ''],
+      ['main > section:not(.hero) .head', ''], ['.sched .when', 'from-l'], ['.days li', 'pop'], ['.bar', ''],
       ['.player', ''], ['.chat', 'from-r'], ['.card-wrap', 'from-l'], ['.facts > div', ''], ['.taste > div', 'pop'],
       ['.year h3', 'pop'], ['.events li:not(.best-li)', ''], ['.best', 'pop'], ['.links li', ''], ['#trailer .tile', 'pop'], ['.foot-row', '']
     ];
