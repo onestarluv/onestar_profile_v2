@@ -32,9 +32,10 @@
   --strawberry:#FFBFD6;  /* 딸기우유핑크: 테두리 · 그림자 · 하트 무늬 */
   --paper:#FFFFFF;       /* 카드 */
   --ink:#5C2340;         /* 글자 */
-  --name:#111111;        /* 이름 '슬한별' 글자 (첫 화면 큰 이름 · 헤더) */
+  --name:#000000;        /* 이름 '슬한별' 글자 (첫 화면 큰 이름 · 헤더) */
   --muted:#96546F;       /* 보조 글자 */
-  --coral-ink:#D9483B;   /* 코랄색 글자 (흰 바탕에서 읽히게 조금 진하게) */
+  --coral-ink:#C73A2E;   /* 코랄색 작은 글자 (흰 바탕 대비 4.5:1 이상) */
+  --rose-ink:#B3245A;    /* 로즈색 작은 글자 (연핑크 바탕 대비 4.5:1 이상) */
   --line:#FFE1EC;
 
   --display:"Cafe24 Ssurround","Pretendard Variable",sans-serif;
@@ -83,7 +84,7 @@ img{display:block;max-width:100%;height:auto}
 /* 헤더 */
 .top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:3px solid var(--strawberry)}
 .top .wrap{display:flex;align-items:center;gap:32px;height:68px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:24px;color:var(--name)}
+.brand{display:flex;align-items:center;gap:10px;min-height:44px;font-family:var(--display);font-size:24px;color:var(--name)}
 .brand img{width:38px;height:38px}
 .nav{display:flex;gap:4px;font-weight:700;font-size:15px}
 .nav a{padding:10px 14px;border-radius:999px;transition:background-color .15s}
@@ -102,7 +103,7 @@ img{display:block;max-width:100%;height:auto}
 .name span:nth-child(2){animation-delay:.07s}
 .name span:nth-child(3){animation-delay:.14s}
 .lead{margin-top:28px;max-width:30em;font-size:clamp(18px,1.6vw,21px);font-weight:500}
-.lead b{font-weight:800;color:var(--rose)}
+.lead b{font-weight:800}
 .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
 
 .portrait{position:relative;justify-self:end;width:min(440px,100%)}
@@ -112,13 +113,13 @@ img{display:block;max-width:100%;height:auto}
 .portrait .tile .clip{position:absolute;inset:0;border-radius:calc(var(--r-tile) - 3px);overflow:hidden;background:var(--strawberry)}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
 /* 사진 아래 이름표: 팬 애칭 + 팬닉 복사 (로즈 핑크가 아래에서 은은하게 깔리는 띠) */
-.plate{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:72px 20px 20px;background:linear-gradient(to top,rgba(214,51,108,.94) 0%,rgba(214,51,108,.62) 45%,rgba(214,51,108,0) 100%);color:#fff}
+.plate{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:72px 20px 20px;background:linear-gradient(to top,rgba(214,51,108,.96) 0%,rgba(214,51,108,.9) 48%,rgba(214,51,108,0) 100%);color:#fff}
 .plate .fan{display:grid;gap:4px;min-width:0}
-.plate .fan small{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--baby)}
+.plate .fan small{font-size:12px;font-weight:700;letter-spacing:.08em}
 .plate .fan b{font-family:var(--display);font-weight:400;font-size:clamp(20px,2vw,24px);line-height:1.1;white-space:nowrap}
 .plate .fan b em{font-style:normal;color:var(--strawberry)}
 .nick{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;border:0;background:#fff;color:var(--rose);font-weight:800;font-size:14px;transition:transform .15s var(--ease)}
-.nick span{display:grid;place-items:center;min-width:34px;height:26px;padding:0 6px;border-radius:999px;background:var(--rose);color:#fff;font-family:var(--display);font-size:15px;line-height:1}
+.nick span{display:grid;place-items:center;min-width:34px;height:26px;padding:0 10px;border-radius:999px;background:var(--rose);color:#fff;font-family:var(--display);font-size:15px;line-height:1}
 .nick:hover{transform:translateY(-2px)}
 .nick:active{transform:translateY(1px)}
 /* 액자 모서리의 작은 별 두 개 */
@@ -131,25 +132,26 @@ img{display:block;max-width:100%;height:auto}
 /* 블록 공통: 하트 바탕 위에 카드가 한 장씩 */
 main{padding-bottom:var(--gap)}
 .block{padding:calc(var(--gap) / 2) 0}
-.head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px 32px;margin-bottom:clamp(24px,3.4vw,44px)}
+.head{position:relative;margin-bottom:clamp(24px,3.4vw,44px)}
 .head h2{color:var(--rose)}
 .head p{margin-top:12px;max-width:32em;font-weight:500;color:var(--muted)}
 /* 카드 오른쪽 위의 작은 영문 이름표 */
-.en{display:inline-flex;align-items:center;gap:8px;margin-top:.9em;font-size:13px;font-weight:600;letter-spacing:.3em;color:var(--muted);white-space:nowrap}
+.en{position:absolute;top:0;right:0;display:inline-flex;align-items:center;gap:8px;margin-top:.9em;font-size:13px;font-weight:600;letter-spacing:.3em;color:var(--muted);white-space:nowrap}
 .en::before{content:"♥";font-size:12px;letter-spacing:0;color:var(--coral)}
 
 /* 방송 시간 */
 .sched{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:end}
-.when{font-size:clamp(44px,5.6vw,84px);line-height:1.12}
-.when em{font-style:normal;color:var(--rose);background:linear-gradient(transparent 62%,rgba(255,127,115,.42) 62% 92%,transparent 92%)}
+/* 시간이 주인공: 앞뒤 말은 작게, 8시~10시만 크게 */
+.when{display:grid;gap:.5em;font-size:clamp(22px,2.3vw,32px);line-height:1.1}
+.when strong{font-weight:400;font-size:clamp(56px,6.6vw,100px);line-height:1;letter-spacing:-.03em;color:var(--rose);white-space:nowrap}
 .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
 .days li{display:flex;flex-direction:column;align-items:center;gap:4px;padding:18px 0 14px;border-radius:18px;border:3px solid var(--strawberry);background:var(--paper);font-family:var(--display);font-size:24px;line-height:1}
 .days li small{font-family:var(--body);font-size:13px;font-weight:700;color:var(--muted)}
-.days li.off{border-style:dashed;background:transparent;color:#C99AAE}
+.days li.off{border-style:dashed;background:transparent;color:var(--muted)}
 .days li.off small{color:var(--coral-ink)}
 .days li.today{background:var(--rose);color:#fff;border-color:var(--rose)}
-.days li.today small{color:var(--baby)}
-.days li.today.off{background:var(--baby);color:var(--muted);border:3px dashed var(--coral)}
+.days li.today small{color:#fff}
+.days li.today.off{background:#fff;color:var(--muted);border:3px dashed var(--coral)}
 .days li.today.off small{color:var(--coral-ink)}
 .track{margin-top:28px}
 .bar{position:relative;height:14px;border-radius:999px;background:var(--baby)}
@@ -168,28 +170,28 @@ main{padding-bottom:var(--gap)}
 .poster:hover .play{transform:translateY(-2px);box-shadow:0 8px 0 #fff}
 .poster .play .i{width:22px;height:22px}
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.under{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font-size:15px;font-weight:600}
-.under a,.under button{border:0;background:none;padding:0;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px;text-decoration-color:var(--strawberry)}
+.under{display:flex;flex-wrap:wrap;gap:0 20px;margin-top:20px;font-size:15px;font-weight:600}
+.under a,.under button{border:0;background:none;padding:10px 0;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px;text-decoration-color:var(--strawberry)}
 .under a:hover,.under button:hover{color:var(--rose);text-decoration-color:var(--rose)}
 
 /* 채팅 높이는 왼쪽 플레이어 줄에 맞추고(height:0 + min-height:100%), 메시지가 늘면 .log 안에서만 스크롤 */
-.chat{display:flex;flex-direction:column;height:0;min-height:max(100%,600px);border-radius:var(--r-tile);border:3px solid var(--strawberry);background:#FFF6F9;overflow:hidden}
+.chat{display:flex;flex-direction:column;height:0;min-height:max(100%,540px);border-radius:var(--r-tile);border:3px solid var(--strawberry);background:#FFF6F9;overflow:hidden}
 .chat-top{padding:16px 20px;border-bottom:3px solid var(--strawberry);background:var(--paper);color:var(--rose);font-family:var(--display);font-size:22px;display:flex;justify-content:space-between;align-items:baseline}
 .chat-top small{font-family:var(--body);font-size:13px;font-weight:700;color:var(--muted)}
 .pin{margin:12px 14px 0;padding:10px 14px;border-radius:14px;background:var(--baby);font-size:14px;font-weight:600}
-.pin a{color:var(--rose);text-decoration:underline;text-underline-offset:3px}
+.pin a{color:var(--rose-ink);text-decoration:underline;text-underline-offset:3px}
 .log{flex:1;min-height:120px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--strawberry) transparent;padding:12px 20px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.55}
 .msg .who{font-weight:800;margin-right:6px}
 .msg.you .who{color:var(--coral-ink)}
-.msg.bot .who{color:var(--rose)}
+.msg.bot .who{color:var(--rose-ink)}
 .msg.sys{color:var(--muted);font-size:14px}
-.msg a{color:var(--rose);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.msg a{color:var(--rose-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .msg.new{animation:pop .22s var(--ease)}
 .cmds{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;padding:12px 14px 0;border-top:3px solid var(--strawberry);background:var(--paper)}
-.cmds button{min-height:36px;padding:0 8px;white-space:nowrap;border-radius:var(--r-chip);border:2px solid var(--strawberry);background:var(--paper);font-size:14px;font-weight:700;transition:background-color .15s,border-color .15s,color .15s}
-.cmds button:hover{background:var(--baby);border-color:var(--rose);color:var(--rose)}
+.cmds button{min-height:44px;padding:0 8px;white-space:nowrap;border-radius:var(--r-chip);border:2px solid var(--strawberry);background:var(--paper);font-size:14px;font-weight:700;transition:background-color .15s,border-color .15s,color .15s}
+.cmds button:hover{background:var(--baby);border-color:var(--rose);color:var(--rose-ink)}
 .say{display:flex;gap:8px;padding:12px 14px 14px;background:var(--paper)}
-.say input{flex:1;min-width:0;min-height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--strawberry);background:#fff}
+.say input{flex:1;min-width:0;min-height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--rose);background:#fff}
 .say input::placeholder{color:var(--muted)}
 .say button{min-height:44px;padding:0 18px;border-radius:999px;border:0;background:var(--rose);color:#fff;font-weight:800}
 
@@ -220,7 +222,7 @@ main{padding-bottom:var(--gap)}
 .taste .yes{background:var(--baby)}
 .taste .no{border:2px dashed var(--strawberry)}
 .taste h3{font-size:14px;font-weight:800;color:var(--muted)}
-.taste .yes h3{color:var(--rose)}
+.taste .yes h3{color:var(--rose-ink)}
 .taste ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .taste li{padding:6px 14px;border-radius:999px;font-weight:700;font-size:16px}
 .taste .yes li{background:#fff}
@@ -234,7 +236,7 @@ main{padding-bottom:var(--gap)}
 .events time{font-weight:800;font-size:15px;color:var(--muted)}
 .events b{font-size:18px;font-weight:800;letter-spacing:-.01em}
 .events small{display:block;font-size:14px;color:var(--muted);font-weight:500}
-.res{padding:4px 12px;border-radius:999px;font-size:14px;font-weight:800;border:2px solid var(--strawberry);color:var(--rose);white-space:nowrap}
+.res{padding:4px 12px;border-radius:999px;font-size:14px;font-weight:800;border:2px solid var(--strawberry);color:var(--rose-ink);white-space:nowrap}
 .res.pass{background:var(--baby)}
 .res.win{background:var(--coral);border-color:var(--coral);color:var(--ink)}
 .res.host{background:var(--rose);border-color:var(--rose);color:#fff}
@@ -243,7 +245,7 @@ main{padding-bottom:var(--gap)}
 .best{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:28px;border-radius:var(--r-tile);background:var(--rose);color:#fff;box-shadow:0 8px 0 var(--strawberry)}
 .best .medal{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#fff;color:var(--rose)}
 .best .medal svg{width:42px;height:42px;stroke-width:1.8}
-.best time{font-weight:800;font-size:15px;color:var(--baby)}
+.best time{font-weight:800;font-size:15px;color:#fff}
 .best b{display:block;font-family:var(--display);font-size:clamp(28px,3vw,40px);line-height:1.1;font-weight:400}
 
 /* 링크 */
@@ -262,11 +264,12 @@ main{padding-bottom:var(--gap)}
 .foot{background:var(--strawberry);padding:0 0 112px}  /* 아래 여백: 왼쪽 아래 음악 플레이어·맨 위로 버튼에 글자가 가리지 않게 */
 .foot::before{content:"";display:block;height:28px;background:var(--check)}
 .foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;padding-top:clamp(48px,6vw,80px)}
-.foot-row .display{font-size:clamp(40px,6vw,72px);color:var(--rose)}
-.foot-meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px;font-weight:600}
-.foot-meta a:hover{color:var(--rose)}
+.foot-row .display{font-size:clamp(40px,6vw,72px);color:var(--rose-ink)}
+.foot-meta{display:flex;flex-wrap:wrap;gap:0 24px;font-size:15px;font-weight:600}
+.foot-meta a{display:inline-flex;align-items:center;min-height:44px}
+.foot-meta a:hover{color:var(--rose-ink)}
 
-.toast{position:fixed;left:50%;bottom:28px;z-index:60;padding:14px 22px;border-radius:999px;background:var(--rose);color:#fff;font-weight:800;box-shadow:0 5px 0 var(--strawberry);transform:translate(-50%,180%);visibility:hidden;transition:transform .3s var(--ease),visibility .3s}
+.toast{position:fixed;left:50%;bottom:28px;z-index:60;width:max-content;max-width:calc(100vw - 32px);padding:14px 22px;border-radius:26px;text-align:center;line-height:1.4;background:var(--rose);color:#fff;font-weight:800;box-shadow:0 5px 0 var(--strawberry);transform:translate(-50%,180%);visibility:hidden;transition:transform .3s var(--ease),visibility .3s}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 
 @keyframes rise{from{opacity:0;transform:translateY(.35em)}to{opacity:1;transform:none}}
@@ -365,7 +368,7 @@ section[id]{scroll-margin-top:76px}
 .bgm{position:fixed;left:20px;bottom:20px;z-index:50;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border:3px solid var(--strawberry);border-radius:999px;background:var(--paper);box-shadow:0 5px 0 var(--strawberry);font-size:13px;max-width:calc(100vw - 110px)}
 .bgm[hidden]{display:none}
 .bgm button{display:grid;place-items:center;flex:none;padding:0;border:0;border-radius:50%;background:var(--rose);color:#fff;transition:transform .15s var(--ease),background-color .15s}
-.bgm-toggle{width:40px;height:40px}
+.bgm-toggle{width:44px;height:44px}
 .bgm-toggle:hover{transform:scale(1.06)}
 .bgm-toggle svg{width:18px;height:18px}
 .bgm-toggle .ic-pause,.bgm.on .bgm-toggle .ic-play{display:none}
@@ -380,8 +383,8 @@ section[id]{scroll-margin-top:76px}
 .bgm.on .eq i:nth-child(2){animation-delay:-.3s}
 .bgm.on .eq i:nth-child(3){animation-delay:-.6s}
 @keyframes eq{0%,100%{height:3px}50%{height:12px}}
-.bgm .bgm-mute{width:30px;height:30px;background:var(--baby);color:var(--rose)}
-.bgm-mute svg{width:16px;height:16px}
+.bgm .bgm-mute{width:44px;height:44px;background:var(--baby);color:var(--rose)}
+.bgm-mute svg{width:18px;height:18px}
 .bgm-mute .ic-off,.bgm.muted .bgm-mute .ic-on{display:none}
 .bgm.muted .bgm-mute .ic-off{display:block}
 .bgm input[type=range]{width:84px;accent-color:var(--rose)}
@@ -402,10 +405,14 @@ section[id]{scroll-margin-top:76px}
 }
 @media (max-width:860px){
   .nav{display:none}
-  .hero{grid-template-columns:1fr}
-  .portrait{justify-self:start;width:min(400px,88%)}
+  .plate{flex-wrap:wrap}
   .sched{grid-template-columns:1fr}
   .years{grid-template-columns:1fr}
+}
+/* 태블릿까지는 이름과 사진을 나란히, 그보다 좁으면 한 줄로 */
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr}
+  .portrait{justify-self:start;width:min(400px,88%)}
 }
 @media (max-width:560px){
   body{font-size:16px}
@@ -420,6 +427,8 @@ section[id]{scroll-margin-top:76px}
   .nick{padding:0 12px 0 10px;font-size:13px}
   .spark.s1{right:-10px}
   .en{font-size:11px;letter-spacing:.24em}
+  .cmds{grid-template-columns:repeat(3,1fr)}
+  .cmds button{font-size:13px;padding:0 4px}
   .days{gap:4px}
   .days li{padding:14px 0 10px;font-size:19px;border-radius:12px;border-width:2px}
   .days li small{font-size:12px}
@@ -479,7 +488,7 @@ section[id]{scroll-margin-top:76px}
       <div class="tile"><div class="clip"><img src="assets/hero.webp" alt="분홍 단발머리에 고양이 귀, 노란 후드를 입은 슬한별" width="576" height="576" fetchpriority="high">
         <div class="plate">
           <p class="fan"><small>팬 애칭</small><b>별빛 · 내꺼 <em>♡</em></b></p>
-          <button class="nick" type="button" id="nick" aria-label="팬닉 Ξ★ 복사하기"><span aria-hidden="true">Ξ★</span>팬닉 복사</button>
+          <button class="nick" type="button" id="nick" aria-label="팬닉에 붙이는 말 별이꺼 복사하기"><span aria-hidden="true">별이꺼</span>팬닉 복사</button>
         </div>
       </div></div>
       <svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.6 5.4 3.1 7.9 8.5 8.5-5.4.6-7.9 3.1-8.5 8.5-.6-5.4-3.1-7.9-8.5-8.5 5.4-.6 7.9-3.1 8.5-8.5Z"/></svg>
@@ -489,10 +498,10 @@ section[id]{scroll-margin-top:76px}
 
   <section id="schedule" class="block" aria-labelledby="sched-h">
     <div class="wrap panel">
-      <div class="head"><div><h2 id="sched-h" class="display h2">방송 시간</h2><p>금요일만 쉬고, 매일 저녁에 켜요.</p></div><span class="en" aria-hidden="true">SCHEDULE</span></div>
+      <div class="head"><div><h2 id="sched-h" class="display h2">방송 시간</h2><p>금요일만 쉬어요.</p></div><span class="en" aria-hidden="true">SCHEDULE</span></div>
       <div class="sched">
         <div>
-          <p class="display when">매일 저녁<br><em>8시~10시</em><br>사이</p>
+          <p class="display when"><span>매일 저녁</span><strong>8시~10시</strong><span>사이에 켜요</span></p>
         </div>
         <div>
           <ol class="days" id="days" aria-label="요일별 방송">
@@ -761,7 +770,7 @@ section[id]{scroll-margin-top:76px}
   poster.addEventListener('click', openPlayer);
   close.addEventListener('click', () => { clip.querySelector('iframe')?.remove(); poster.hidden = false; close.hidden = true; poster.focus(); });
 
-  /* 배경음악: 브라우저 정책상 페이지를 열자마자 재생은 못 해서, 처음 한 번 페이지를 누르거나 키를 누를 때 켜요.
+  /* 배경음악: 브라우저 정책상 페이지를 열자마자 재생은 못 해서, 처음 한 번 페이지를 누를 때 켜요.
      직접 껐다면 그 선택을 기억해서 다음에는 자동으로 켜지 않아요.
      실시간 방송이 재생되는 동안은 멈췄다가, 플레이어를 닫으면 다시 이어서 재생.
      켬/끔·소리 크기·음소거는 이 브라우저에 기억 (localStorage, 실패해도 기본값으로 동작) */
@@ -796,16 +805,16 @@ section[id]{scroll-margin-top:76px}
     if (wantOn){ holds.clear(); au.play().catch(e => { if (e.name === 'NotAllowedError'){ wantOn = false; paint(); } }); } else au.pause();
     paint();
   });
-  /* 처음 누름/키 입력에서 한 번만 켬. 음악 플레이어를 직접 눌렀다면 그 버튼에 맡김 */
+  /* 처음 누를 때 한 번만 켬 (Tab으로 둘러보는 것만으로는 켜지 않음). 음악 플레이어를 직접 눌렀다면 그 버튼에 맡김 */
   function firstTouch(e){
     if (bgm.hidden) return;  // 음악 파일 확인 전이면 다음 입력 때 다시 시도
-    removeEventListener('click', firstTouch, true); removeEventListener('keydown', firstTouch, true);
+    removeEventListener('click', firstTouch, true);
     if (load('bgm-off') === '1' || !au.paused || (e.target.closest && e.target.closest('#bgm'))) return;
     wantOn = true;
     au.play().catch(err => { if (err.name === 'NotAllowedError'){ wantOn = false; paint(); } });
     paint();
   }
-  addEventListener('click', firstTouch, true); addEventListener('keydown', firstTouch, true);
+  addEventListener('click', firstTouch, true);
   bgM.addEventListener('click', () => { au.muted = !au.muted; save('bgm-muted', au.muted ? '1' : '0'); paint(); });
   bgV.addEventListener('input', () => {
     setVol(Number(bgV.value)); save('bgm-vol', bgV.value);
@@ -823,7 +832,7 @@ section[id]{scroll-margin-top:76px}
     '!생일':`11월 23일이에요. (${ddText})`,
     '!첫방':'2025년 3월 1일에 첫 방송을 했어요.',
     '!mbti':'INFP / ISFP',
-    '!팬닉':'팬닉은 Ξ★ 예요.',
+    '!팬닉':'팬닉은 닉네임 뒤에 "는별이꺼"를 붙여요. 받침이 있으면 "은별이꺼"예요. (예: 정곰은별이꺼)',
     '!애칭':'팬 애칭은 별빛, 내꺼예요.',
     '!노래책':'신청곡은 ' + L('https://onestage.kr/@seul/musicbook','노래책') + '에서 골라 주세요.',
     '!유튜브':L('https://www.youtube.com/@seulhanbyeol','유튜브 채널') + '에 다시보기가 있어요.',
@@ -859,13 +868,14 @@ section[id]{scroll-margin-top:76px}
   add('sys','','명령어를 누르면 안내봇이 답해 줘요.');
   add('you','별빛','!방송시간'); add('bot','안내봇',C['!방송시간']);
 
-  /* 팬닉 복사 */
+  /* 팬닉 복사: 팬닉은 '닉네임+는별이꺼'라서, 누구나 똑같이 붙이는 '별이꺼'만 복사해요 */
+  const NICK_TAIL = '별이꺼';
   const toast = $('toast'); let tt;
   async function copyNick(quiet){
-    let ok = true; try { await navigator.clipboard.writeText('Ξ★'); } catch { ok = false; }
+    let ok = true; try { await navigator.clipboard.writeText(NICK_TAIL); } catch { ok = false; }
     if (quiet && !ok) return;
-    toast.textContent = ok ? '팬닉 Ξ★ 복사했어요' : '팬닉은 Ξ★ 예요';
-    toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 2000);
+    toast.textContent = ok ? NICK_TAIL + ' 복사했어요. 닉네임 뒤에 붙여 주세요' : '팬닉은 닉네임+는별이꺼 예요';
+    toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 2600);
   }
   $('nick').addEventListener('click', () => copyNick(false));
 
